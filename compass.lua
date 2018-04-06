@@ -3,7 +3,7 @@ local compass = { cardinal={}, intercardinal={}, needle={}}
 -- Configuration. Please be careful when editing. It does not check for errors.
 compass.show = true
 compass.position = {x = 0.5, y = 0.07, centered = true}
-compass.width = 0.5
+compass.width = 0.35
 compass.fov = 180
 compass.followGameplayCam = true
 
@@ -30,8 +30,8 @@ compass.intercardinal.tickSize = {w = 0.001, h = 0.006}
 compass.intercardinal.tickColour = {r = 255, g = 255, b = 255, a = 255}
 
 compass.needle.show = true
-compass.needle.textSize = 0.2
-compass.needle.textOffset = 0.025
+compass.needle.textSize = 0.24
+compass.needle.textOffset = 0.03
 compass.needle.textColour = {r = 255, g = 255, b = 255, a = 255}
 compass.needle.needleSize = {w = 0.0015, h = 0.018}
 compass.needle.needleColour = {r = 255, g = 255, b = 255, a = 255}

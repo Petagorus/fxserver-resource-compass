@@ -2,7 +2,7 @@ local streetName = {}
 
 -- Configuration. Please be careful when editing. It does not check for errors.
 streetName.show = true
-streetName.position = {x = 0.5, y = 0.02, centered = true}
+streetName.position = {x = 0.5, y = 0.015, centered = true}
 streetName.textSize = 0.35
 streetName.textColour = {r = 255, g = 255, b = 255, a = 255}
 -- End of configuration
