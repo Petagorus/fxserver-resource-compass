@@ -9,6 +9,10 @@
 
 ## Changelog
 
+### 1.2
+- Changed folder structure.
+- Configuration is now separated in it's own `config.lua` !
+
 ### 1.1
 - Added compass needle with text and central indicator?
 

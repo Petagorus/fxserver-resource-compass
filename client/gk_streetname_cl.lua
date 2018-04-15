@@ -1,19 +1,12 @@
-local streetName = {}
 
--- Configuration. Please be careful when editing. It does not check for errors.
-streetName.show = true
-streetName.position = {x = 0.5, y = 0.015, centered = true}
-streetName.textSize = 0.35
-streetName.textColour = {r = 255, g = 255, b = 255, a = 255}
 -- End of configuration
 
 
 Citizen.CreateThread( function()
 	local lastStreetA = 0
 	local lastStreetB = 0
-	local lastStreetName = {}
 
-	while streetName.show do
+	while Config.streetName.show do
 		Wait( 0 )
 
 		local playerPos = GetEntityCoords( GetPlayerPed( -1 ), true )
@@ -21,7 +14,6 @@ Citizen.CreateThread( function()
 		local street = {}
 
 		if not ((streetA == lastStreetA or streetA == lastStreetB) and (streetB == lastStreetA or streetB == lastStreetB)) then
-			-- Ignores the switcharoo while doing circles on intersections
 			lastStreetA = streetA
 			lastStreetB = streetB
 		end
@@ -34,11 +26,11 @@ Citizen.CreateThread( function()
 			table.insert( street, GetStreetNameFromHashKey( lastStreetB ) )
 		end
 
-		drawText( table.concat( street, " & " ), streetName.position.x, streetName.position.y, {
-			size = streetName.textSize,
-			colour = streetName.textColour,
+		drawText( table.concat( street, " & " ), Config.streetName.position.x, Config.streetName.position.y, {
+			size = Config.streetName.textSize,
+			colour = Config.streetName.textColour,
 			outline = true,
-			centered = streetName.position.centered
+			centered = Config.streetName.position.centered
 		})
 	end
 end)
