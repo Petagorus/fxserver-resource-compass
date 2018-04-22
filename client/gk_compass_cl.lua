@@ -4,18 +4,18 @@ Citizen.CreateThread( function()
 	end
 
 	while Config.compass.show do
-		Wait( 0 )
+		Citizen.Wait(0)
 
 		local pxDegree = Config.compass.width / Config.compass.fov
 		local playerHeadingDegrees = 0
 
 		if Config.compass.followGameplayCam then
 			-- Converts [-180, 180] to [0, 360] where E = 90 and W = 270
-			local camRot = Citizen.InvokeNative( 0x837765A25378F0BB, 0, Citizen.ResultAsVector() )
+			local camRot = Citizen.InvokeNative(0x837765A25378F0BB, 0, Citizen.ResultAsVector())
 			playerHeadingDegrees = 360.0 - ((camRot.z + 360.0) % 360.0)
 		else
 			-- Converts E = 270 to E = 90
-			playerHeadingDegrees = 360.0 - GetEntityHeading( GetPlayerPed( -1 ) )
+			playerHeadingDegrees = 360.0 - GetEntityHeading(GetPlayerPed(-1))
 		end
 
 		local tickDegree = playerHeadingDegrees - Config.compass.fov / 2
@@ -28,10 +28,10 @@ Citizen.CreateThread( function()
 			if (tickDegree % 90.0) == 0 then
 				-- Draw cardinal
 				if Config.compass.cardinal.tickShow then
-					DrawRect( tickPosition, Config.compass.position.y, Config.compass.cardinal.tickSize.w, Config.compass.cardinal.tickSize.h, Config.compass.cardinal.tickColour.r, Config.compass.cardinal.tickColour.g, Config.compass.cardinal.tickColour.b, Config.compass.cardinal.tickColour.a )
+					DrawRect(tickPosition, Config.compass.position.y, Config.compass.cardinal.tickSize.w, Config.compass.cardinal.tickSize.h, Config.compass.cardinal.tickColour.r, Config.compass.cardinal.tickColour.g, Config.compass.cardinal.tickColour.b, Config.compass.cardinal.tickColour.a)
 				end
 
-				drawText( degreesToIntercardinalDirection( tickDegree ), tickPosition, Config.compass.position.y + Config.compass.cardinal.textOffset, {
+				drawText(degreesToIntercardinalDirection(tickDegree), tickPosition, Config.compass.position.y + Config.compass.cardinal.textOffset, {
 					size = Config.compass.cardinal.textSize,
 					colour = Config.compass.cardinal.textColour,
 					outline = true,
@@ -40,11 +40,11 @@ Citizen.CreateThread( function()
 			elseif (tickDegree % 45.0) == 0 and Config.compass.intercardinal.show then
 				-- Draw intercardinal
 				if Config.compass.intercardinal.tickShow then
-					DrawRect( tickPosition, Config.compass.position.y, Config.compass.intercardinal.tickSize.w, Config.compass.intercardinal.tickSize.h, Config.compass.intercardinal.tickColour.r, Config.compass.intercardinal.tickColour.g, Config.compass.intercardinal.tickColour.b, Config.compass.intercardinal.tickColour.a )
+					DrawRect(tickPosition, Config.compass.position.y, Config.compass.intercardinal.tickSize.w, Config.compass.intercardinal.tickSize.h, Config.compass.intercardinal.tickColour.r, Config.compass.intercardinal.tickColour.g, Config.compass.intercardinal.tickColour.b, Config.compass.intercardinal.tickColour.a)
 				end
 
 				if Config.compass.intercardinal.textShow then
-					drawText( degreesToIntercardinalDirection( tickDegree ), tickPosition, Config.compass.position.y + Config.compass.intercardinal.textOffset, {
+					drawText(degreesToIntercardinalDirection(tickDegree), tickPosition, Config.compass.position.y + Config.compass.intercardinal.textOffset, {
 						size = Config.compass.intercardinal.textSize,
 						colour = Config.compass.intercardinal.textColour,
 						outline = true,
@@ -53,7 +53,7 @@ Citizen.CreateThread( function()
 				end
 			else
 				-- Draw tick
-				DrawRect( tickPosition, Config.compass.position.y, Config.compass.tickSize.w, Config.compass.tickSize.h, Config.compass.tickColour.r, Config.compass.tickColour.g, Config.compass.tickColour.b, Config.compass.tickColour.a )
+				DrawRect(tickPosition, Config.compass.position.y, Config.compass.tickSize.w, Config.compass.tickSize.h, Config.compass.tickColour.r, Config.compass.tickColour.g, Config.compass.tickColour.b, Config.compass.tickColour.a)
 			end
 
 			-- Advance to the next tick
